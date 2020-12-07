@@ -84,43 +84,13 @@ void main::GetCoords(string city, string country) {
 }
 
 void main::SetInfo(string weather, double tempinfo[], double humidity, double windspeed, double winddegree, int visibility) {
-	const char* WindDirection;
-	if (winddegree >= 180) {
-		if (winddegree >= 270) {
-			if (winddegree <= 330 && winddegree >= 300) {
-				WindDirection = "North West";
-			}
-			else {
-				WindDirection = "North";
-			}
-		}
-		else {
-			if (winddegree <= 240 && winddegree >= 210) {
-				WindDirection = "South West";
-			}
-			else {
-				WindDirection = "South";
-			}
-		}
-	}
-	else {
-		if (winddegree >= 90) {
-			if (winddegree <= 150 && winddegree >= 120) {
-				WindDirection = "South East";
-			}
-			else {
-				WindDirection = "South";
-			}
-		}
-		else {
-			if (winddegree <= 60 && winddegree >= 30) {
-				WindDirection = "North East";
-			}
-			else {
-				WindDirection = "North";
-			}
-		}
-	}
+	char* WindDirection;
+	auto directions = new string[9]{
+		"N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"
+		};
+
+		int index = (heading + 23) / 45;
+		std::string WindDirection = directions[index];
 
 	std::cout << "\nCurrent weather: \n";
 	std::cout << weather << " Temp: " << tempinfo[0] << "\n";
